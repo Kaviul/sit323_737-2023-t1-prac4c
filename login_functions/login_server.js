@@ -12,7 +12,7 @@ const fs = require('fs');
 
 
 const authRoute = require('./Routes/auth')
-const UserSignUpRoute = require('./Routes/usersignup');
+//const UserSignUpRoute = require('./Routes/usersignup');
 
 //const url =  "mongodb+srv://kaviuln1:kaviuln@kncluster-1.ieurp6n.mongodb.net/?retryWrites=true&w=majority"
 //const url =  "mongodb+srv://kaviul:kaviuln@safehome.tqfgm2a.mongodb.net/safehome?retryWrites=true&w=majority"
@@ -41,7 +41,7 @@ app.use(bodyParser.urlencoded({extended: true}))
 app.use(bodyParser.json())
 app.use(express.static(__dirname+'/login_design'));
 app.use('/api', authRoute)
-app.use('/api/SignUp', UserSignUpRoute)
+//app.use('/api/SignUp', UserSignUpRoute)
 
 
 const port= process.env.port || 3000
@@ -54,5 +54,8 @@ app.listen(port, ()=> {
     console.log("Server is listening on: ", port)
 
 })
+
+
+  
 
 

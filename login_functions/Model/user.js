@@ -29,5 +29,5 @@ const userSchema = new Schema({
     }
 }, {timestamps: true})
 
-const Login = mongoose.model('SignUp', userSchema)
-module.exports = Login
+const Register = mongoose.model('SignUp', userSchema)
+module.exports = Register

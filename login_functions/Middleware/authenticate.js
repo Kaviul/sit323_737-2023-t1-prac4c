@@ -2,6 +2,7 @@ const jwt = require("jsonwebtoken");
 const { token } = require("morgan");
 const passport = require('passport')
 const localStrategy = require('passport-local').Strategy;
+var authentication = false;
 
 //Passport
 // passport.use (
@@ -55,41 +56,51 @@ const localStrategy = require('passport-local').Strategy;
 //     )
 // )
 
-passport.use(
-    new localStartegy(async (username, password, done) => {
-                return done(null, {username: email, password: token});
-             })
+// passport.use(
+//     new localStrategy(async (username, password, done) => {
+//                 return done(null, {username: email, password: token});
+//              })
 
-)
+// )
 
-passport.use(
-        "login",
-        new localStrategy(async (username, password, done) => {
-            console.log("Working");
-            let myErr = new Error('Error occured');
+// passport.use(
+//         "login",
+//         new localStrategy(async (username, password, done) => {
+//             console.log("Working");
+//             let myErr = new Error('Error occured');
     
-            return done(
-                null,
-                {username: email, password: token},
-                {message: "congrats! u r logged in"}
-            );
-        })
-    )
-
-// const authenticate = (req, res, next) => {
-//     try{
-//         const token = req.headers.authorization.split(' ')[1]
-//         const decode = jwt.verify(token, 'verySecretValue')
-
-//         req.user = decode
-//         next()
-//     }
-//     catch(error) {
-//         res.json({
-//             message: "Authentication Failed!"
+//             return done(
+//                 null,
+//                 {username: email, password: token},
+//                 {message: "congrats! u r logged in"}
+//             );
 //         })
-//     }
-// }
+//     )
+
+const authenticate = (req, res, next) => {
+    try{
+        const token = req.headers.authorization.split(' ')[1]
+        const decode = jwt.verify(token, 'verySecretValue')
+
+        req.user = decode
+        next()
+
+        authentication = true;
+    }
+    catch(error) {
+        res.json({
+            message: "Authentication Failed!"
+        })
+    }
+}
+
+// Check if the authentication was successful
+if (authentication) {
+    // Load the HTML page
+    app.get('/calculator', function(req, res) {
+      res.sendFile(path.join(__dirname, '../public/calculator.html'));
+    });
+  }
 
 module.exports = authenticate
 
