@@ -56,26 +56,26 @@ var authentication = false;
 //     )
 // )
 
-// passport.use(
-//     new localStrategy(async (username, password, done) => {
-//                 return done(null, {username: email, password: token});
-//              })
+passport.use(
+    new localStrategy(async (username, password, done) => {
+                return done(null, {username: email, password: token});
+             })
 
-// )
+)
 
-// passport.use(
-//         "login",
-//         new localStrategy(async (username, password, done) => {
-//             console.log("Working");
-//             let myErr = new Error('Error occured');
+passport.use(
+        "login",
+        new localStrategy(async (username, password, done) => {
+            console.log("Working");
+            let myErr = new Error('Error occured');
     
-//             return done(
-//                 null,
-//                 {username: email, password: token},
-//                 {message: "congrats! u r logged in"}
-//             );
-//         })
-//     )
+            return done(
+                null,
+                {username: email, password: token},
+                {message: "congrats! u r logged in"}
+            );
+        })
+    )
 
 const authenticate = (req, res, next) => {
     try{

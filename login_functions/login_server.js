@@ -46,7 +46,7 @@ app.use('/', authRoute)
 
 const port= process.env.port || 3000
 
-app.get('/', (req, res) => {
+app.get('/login', (req, res) => {
     res.sendFile(__dirname+'/login_design/login.html');
 })
 
