@@ -2,7 +2,7 @@ const User = require('../Model/user')
 const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
 
-const register = (req,res, next) => {
+const register = (req,res) => {
     bcrypt.hash(req.body.password, 10, function(err, hashedPass){
         if(err) {
             res.json({
@@ -19,7 +19,7 @@ const register = (req,res, next) => {
         user.save()
         .then(user => {
             res.json({
-                message: 'User Added successfully!'
+                message: user + 'added successfully!'
             })
         })
         .catch(error => {res.json({

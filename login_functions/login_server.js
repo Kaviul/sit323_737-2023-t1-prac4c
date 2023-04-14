@@ -40,7 +40,7 @@ app.use(morgan('dev'))
 app.use(bodyParser.urlencoded({extended: true}))
 app.use(bodyParser.json())
 app.use(express.static(__dirname+'/login_design'));
-app.use('/api', authRoute)
+app.use('/', authRoute)
 //app.use('/api/SignUp', UserSignUpRoute)
 
 

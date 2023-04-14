@@ -6,7 +6,7 @@ const authenticator = require('../Middleware/authenticate')
 
 router.post('/register', AuthController.register)
 router.post('/login', AuthController.login)
-router.get('/', authenticator, AuthController.index)
+router.get('/', AuthController.index)
 router.put('/update', AuthController.update)
 
 module.exports = router
