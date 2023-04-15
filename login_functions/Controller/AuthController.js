@@ -1,6 +1,8 @@
 const User = require('../Model/user')
 const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
+const express = require('express')
+var app = express();
 
 const register = (req,res) => {
     bcrypt.hash(req.body.password, 10, function(err, hashedPass){
@@ -81,14 +83,18 @@ const login = (req, res, next) => {
                     res.json({error: err})
                 }
                 if(result){
-                    let token = jwt.sign({name: user.name}, 'verySecretValue', {expiresIn: '2h'})
-                    res.json({message:"Login Successful!", token
+                   let token = jwt.sign({name: user.name}, 'verySecretValue', {expiresIn: '2h'})
+                   res.json({message:"Login Successful! ", token})
+                //      app.get('', function(req, res) {
+                //      res.sendFile(__dirname, './public/calculator.html');
+                //    });
+          
 
-                    })
+                    
                 }
                 else{
                     res.json({
-                        message: "Invalid Password!"
+                        message: "Email or Password Invalid!"
                     })
                 }
 
